@@ -58,7 +58,7 @@ Sabiendo que estamos en la misma red que la víctima, necesitamos saber que IP_V
 ```bash
 nmap -sn IP/24
 ```
-![imagen](Guia/imagenes/1.png)
+![imagen](imagenes/1.png)
 
 Sabiendo que nuestra IP es la que acaba en 15, deduciomos que la IP_VICTIMA es la acabada en 4 (10.0.2.4) por ser de Oracle VitualBox.
 Ahora podemos escanear los servicios activos de esta máquina con el siguiente comando:
@@ -77,7 +77,7 @@ nmap -sC -sV -p- -T4 -O IP_VICTIMA
 
 ### Resultados relevantes del escaneo
 
-![imagen](Guia/imagenes/2.png)
+![imagen](imagenes/2.png)
 
 Como podemos ver hay varios servicios activos, entre ellos, dos páginas web, una en el puerto 80 o 8080 y la otra en la 8081, que nos pueden proporcionar una serie de pistas para lograr conseguir las flags.
 
@@ -119,7 +119,7 @@ use 0
 
 Este modulo tiene varios parámetros que se pueden asignar, pero solo necesitamos tener en cuenta los siguientes que son: RHOSTS, RPORT y SITEPATH.
 Estos valores se asignan gracias a las pistas proporcionadas por la página web alojada en el puerto 8081, la cual se puede acceder mediante el enlace http://IP_VICTIMA:8081.
-![imagen](Guia/imagenes/3.png)
+![imagen](imagenes/3.png)
 Si nos fijamos detalladamente en la web, vemos que hay una sección que nos dice el puerto y el sitepath que tiene asignado el servicio, por lo tanto, para configurar el payload correctamente debemos ejecutar lo siguiente:
 
 ```bash
@@ -136,7 +136,7 @@ set SITEPATH /var/www/ftp
 | `SITEPATH`| /var/www/ftp | Ruta donde el servidor FTP tiene permisos de escritura y es accesible vía web |
 
 Quedando asi las opciones disponibles:
-![imagen](Guia/imagenes/4.png)
+![imagen](imagenes/4.png)
 
 > 💡 **¿Por qué `/var/www/ftp`?** El exploit necesita copiar un payload a una ruta que luego pueda ejecutarse vía HTTP. Si el servidor web sirve ficheros desde `/var/www/`, subir algo ahí y luego hacer una petición HTTP lo ejecutará en el servidor.
 :::
@@ -167,7 +167,7 @@ En la segunda Flag nos aprovecharemos del servidor web donde se pueden publicar 
 ### Enumeración web con Gobuster
 
 Entramos a la página web y vemos un portal con información. Lo más relevante que podemos sacar son los tipos de archivos y directorios que hay en el servidor:
-![imagen](Guia/imagenes/5.png)
+![imagen](imagenes/5.png)
 
 Con el servidor web en el puerto 80, usamos **Gobuster** para hacer fuzzing de directorios y archivos ocultos. Seleccionamos archivos php por las pistas que nos dan en la página web:
 
@@ -186,13 +186,13 @@ gobuster dir -u http://IP_VICTIMA/ -w /usr/share/dirbuster/wordlists/directory-l
 
 ### Resultados interesantes
 
-![imagen](Guia/imagenes/6.png)
+![imagen](imagenes/6.png)
 Observamos que hay un directorio interesante llamado uploads y un archivo upload.php.
 
 ### Subida de Web Shell
 
 Accedemos a `http://IP_VICTIMA/upload.php` y vemos que podemos subir cualquier tipo archivo:
-![imagen](Guia/imagenes/7.png)
+![imagen](imagenes/7.png)
 
 
 Por lo tanto, subimos un archivo PHP malicioso que nos permita ejecutar comandos. Creamos el fichero `shell.php` con el siguiente contenido:
@@ -250,7 +250,7 @@ http://IP_VICTIMA/uploads/shell.php?cmd=cat%20/etc/passwd
 
 Buscamos usuarios con shell interactiva (`/bin/bash` o `/bin/sh`):
 
-![imagen](Guia/imagenes/8.png)
+![imagen](imagenes/8.png)
 
 
 Identificamos que hay diferentes usuarios con shell interactiva. Para este caso, que se trata de un ataque de fuerza bruta del servicio de ssh, usaremos el usuario **`ssh-session`**.
@@ -292,7 +292,7 @@ sudo -l
 
 Salida esperada donde observamos que el usuario tiene permisos root sobre python3:
 
-![imagen](Guia/imagenes/9.png)
+![imagen](imagenes/9.png)
 
 > 💡 **¿Por qué es peligroso esto?** Si un usuario puede ejecutar `python` como root sin contraseña, puede usar Python para invocar una shell interactiva directamente como root. Esto es una misconfiguration clásica de `sudoers`.
 :::
