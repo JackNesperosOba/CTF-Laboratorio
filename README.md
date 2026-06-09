@@ -27,7 +27,7 @@ Para ejecutar el entorno se necesita [VirtualBox](https://www.virtualbox.org/) 7
 
 ## 2. Importación de las máquinas
 
-Las dos máquinas se encuentran en formato `.ova` en el repositorio. Impórtalas en el siguiente orden desde VirtualBox: `Archivo` → `Importar servicio virtualizado...`, selecciona el archivo correspondiente, revisa los parámetros y haz clic en **Importar**. Repite el proceso primero con `Ubuntu Victima.ova` y después con `Kali VM.ova` si no dispones de una máquina para realizar los ataques, en el caso contrario puedes usar las herramientas que más te convengan.
+Las dos máquinas se encuentran en formato `.ova` descargables en el siguiente enlace de Internet Archive debido a su tamaño [Maquinas](https://archive.org/download/maquinas-ctf). Impórtalas en el siguiente orden desde VirtualBox: `Archivo` → `Importar servicio virtualizado...`, selecciona el archivo correspondiente, revisa los parámetros y haz clic en **Importar**. Repite el proceso primero con `Ubuntu Victima.ova` y después con `Kali VM.ova` si no dispones de una máquina para realizar los ataques, en el caso contrario puedes usar las herramientas que más te convengan.
 
 ---
 
