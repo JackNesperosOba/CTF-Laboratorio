@@ -16,6 +16,7 @@ Entorno CTF (Capture The Flag) desplegado sobre VirtualBox con dos máquinas vir
 4. [Credenciales](#4-credenciales)
 5. [Uso del ctf_checker](#5-uso-del-ctf_checker)
 6. [Herramientas recomendadas](#6-herramientas-recomendadas)
+7. [WriteUp](#7-Writeup)
 
 ---
 
