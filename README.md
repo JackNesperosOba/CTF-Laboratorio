@@ -61,13 +61,13 @@ El verificador de flags está disponible en la máquina víctima. Conéctate por
 
 ```bash
 ssh ctfuser@IP_VICTIMA
-./ctf_checker.sh
+./ctf_game.sh
 ```
 
 El script muestra el enunciado de cada reto y verifica la flag introducida. Hasta que una flag no es correcta no se desbloquea el enunciado del siguiente reto. El progreso se guarda entre sesiones, por lo que puedes cerrar la terminal y retomarlo más tarde. Si quieres volver a empezar desde el principio, ejecuta:
 
 ```bash
-./ctf_checker.sh --reset
+./ctf_game.sh --reset
 ```
 
 ---
