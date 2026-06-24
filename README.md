@@ -86,7 +86,7 @@ sudo gunzip /usr/share/wordlists/rockyou.txt.gz
 
 ## 7. Writeup
 
-Si te quedas atascado o quieres revisar el proceso de resolución completo una vez hayas terminado, el writeup está disponible en [`writeup/writeup.md`](writeup/writeup.md). Incluye la justificación técnica de cada ataque y las referencias a las vulnerabilidades explotadas.
+Si te quedas atascado o quieres revisar el proceso de resolución completo una vez hayas terminado, el writeup está disponible en [`Guia/Guia_CTF.md`](Guia/Guia_CTF.md). Incluye la justificación técnica de cada ataque y las referencias a las vulnerabilidades explotadas.
 
 ---
 
